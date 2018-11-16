@@ -11,6 +11,16 @@
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
     <!-- TODO #3 - Use the same list display from search.html -->
+    <div th:if="${jobs} and ${jobs.size()}">
+        <h3><span th:text="${jobs.size()}"/> Results(s)</h3>
+        <table th:each="job : ${jobs}" class="job-listing">
+            <tr th:each="item : ${job}">
+                <td th:text="${item.key}"></td>
+                <td th:text="${item.value}"></td>
+            </tr>
+        </table>
+
+    </div>
 
 </div>
 
