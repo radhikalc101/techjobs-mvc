@@ -29,7 +29,11 @@ public class SearchController {
         ArrayList<HashMap<String, String>> results;
         model.addAttribute("columns", ListController.columnChoices);
         if(searchType.equals("all")){
-            results = JobData.findAll();
+            if(searchTerm == null || searchTerm.equals("")) {
+                results = JobData.findAll();
+            } else {
+                results = JobData.findAllByValue(searchTerm);
+            }
         } else {
             results = JobData.findByColumnAndValue(searchType, searchTerm);
         }

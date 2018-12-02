@@ -88,7 +88,25 @@ public class JobData {
 
         return jobs;
     }
+    public static ArrayList<HashMap<String, String>> findAllByValue(String value) {
 
+        // load data, if not already loaded
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+            for(String column: row.keySet()) {
+                String aValue = row.get(column);
+
+                if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
+                    jobs.add(row);
+                }
+            }
+        }
+
+        return jobs;
+    }
     /**
      * Search all columns for the given term
      *
